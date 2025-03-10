@@ -18,4 +18,16 @@ class ProduitController extends Controller
 
     public function show($id){
         return Produit::findorfail($id);
+    }
+
+    public function update(Request $request, $id){
+        $produit = Produit::findorfail($id);
+        $produit->update($request->all());
+        return response()->json($produit, 200);
+    }
+
+    public function destroy($id){
+        Produit::destroy($id);
+        return response()->json(null, 204);
+    }
 }
